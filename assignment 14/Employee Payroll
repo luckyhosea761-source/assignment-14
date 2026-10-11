@@ -1,0 +1,68 @@
+# Assignment 14 - Employee Payroll
+
+employees = {}
+
+while True:
+    print("\n===== EMPLOYEE PAYROLL =====")
+    print("1. Add Employee")
+    print("2. Calculate Salary")
+    print("3. View Employees")
+    print("4. Exit")
+
+    choice = input("Enter your choice: ")
+
+    # Add Employee
+    if choice == "1":
+        name = input("Enter employee name: ")
+        salary = float(input("Enter basic salary: "))
+        tax = float(input("Enter tax amount: "))
+        bonus = float(input("Enter bonus amount: "))
+
+        employees[name] = {
+            "Salary": salary,
+            "Tax": tax,
+            "Bonus": bonus
+        }
+
+        print("Employee added successfully!")
+
+    # Calculate Salary
+    elif choice == "2":
+        name = input("Enter employee name: ")
+
+        if name in employees:
+            salary = employees[name]["Salary"]
+            tax = employees[name]["Tax"]
+            bonus = employees[name]["Bonus"]
+
+            gross_salary = salary + bonus
+            net_salary = gross_salary - tax
+
+            print("\n===== PAYROLL DETAILS =====")
+            print("Employee Name:", name)
+            print("Basic Salary:", salary)
+            print("Bonus:", bonus)
+            print("Gross Salary:", gross_salary)
+            print("Tax:", tax)
+            print("Net Salary:", net_salary)
+        else:
+            print("Employee not found.")
+
+    # View Employees
+    elif choice == "3":
+        if employees:
+            for name, details in employees.items():
+                print("\nEmployee Name:", name)
+                print("Salary:", details["Salary"])
+                print("Tax:", details["Tax"])
+                print("Bonus:", details["Bonus"])
+        else:
+            print("No employees found.")
+
+    # Exit
+    elif choice == "4":
+        print("Thank you for using Employee Payroll!")
+        break
+
+    else:
+        print("Invalid choice. Try again.")
